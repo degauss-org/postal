@@ -35,11 +35,4 @@ if (FALSE) { # how/when to return all expansions?
     tidyr::unnest(normalized_addresses)
   }
 
-# TODO add ability to parse into components too?
-# TODO then, only consider key elements when putting address back together again (ignore "second line"/ Apartment #3)
-
-# TODO add more test addresses / different formats, etc
-# TODO why is OH always getting coded as a "0"????
-
-
 dht::write_geomarker_file(d, filename = opt$filename)
