@@ -40,7 +40,6 @@ if (FALSE) { # how/when to return all expansions?
 
 # TODO add more test addresses / different formats, etc
 # TODO why is OH always getting coded as a "0"????
-# TODO add hash based on entire list of normalized addresses?  this could be used to link many to one auditor address
 
 
 dht::write_geomarker_file(d, filename = opt$filename)
