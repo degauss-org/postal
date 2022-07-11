@@ -1,7 +1,6 @@
- FROM rocker/r-ver:4.1.3
-# FROM golang:1.17.8-buster
+FROM rocker/r-ver:4.1.3
 
-# # DeGAUSS container metadata
+# DeGAUSS container metadata
 ENV degauss_name="postal"
 ENV degauss_version="0.1.0"
 ENV degauss_description="normalized and parsed addresses"
@@ -12,7 +11,6 @@ LABEL "org.degauss.name"="${degauss_name}"
 LABEL "org.degauss.version"="${degauss_version}"
 LABEL "org.degauss.description"="${degauss_description}"
 LABEL "org.degauss.argument"="${degauss_argument}"
-
 
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update \
@@ -26,8 +24,9 @@ RUN apt-get update \
         make \
         && apt-get clean
 
-RUN git clone https://github.com/openvenues/libpostal --branch "v1.1" /code/libpostal
+RUN git clone https://github.com/openvenues/libpostal /code/libpostal
 WORKDIR /code/libpostal
+RUN git checkout a97717f2b9f8fba03d25442f2bd88c15e86ec81b
 RUN ./bootstrap.sh
 RUN mkdir -p /opt/libpostal_data
 RUN ./configure --datadir=/opt/libpostal_data
@@ -35,14 +34,6 @@ RUN make -j4
 RUN make install
 RUN ldconfig -v
 RUN pkg-config --cflags libpostal
-#   download data    ¯\_(ツ)_/¯
-WORKDIR /opt/libpostal_data/libpostal
-ADD https://github.com/openvenues/libpostal/releases/download/v1.0.0/language_classifier.tar.gz .
-RUN tar -xvzf language_classifier.tar.gz && rm language_classifier.tar.gz
-ADD https://github.com/openvenues/libpostal/releases/download/v1.0.0/libpostal_data.tar.gz .
-RUN tar -xvzf libpostal_data.tar.gz && rm libpostal_data.tar.gz
-ADD https://github.com/openvenues/libpostal/releases/download/v1.0.0/parser.tar.gz .
-RUN tar -xvzf parser.tar.gz && rm parser.tar.gz
 
 WORKDIR /app
 RUN R --quiet -e "install.packages('remotes', repos = c(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/focal/latest'))"
