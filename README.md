@@ -13,8 +13,8 @@ docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.0 my_address_file_ge
 
 will produce `my_address_file_geocoded_postal_0.1.0.csv` with added columns:
 
-- **`this_geomarker`**: a definition of this geomarker
-- **`that_geomarker`**: a definition of that geomarker
+- **`address_clean`**: `address` with non-alphanumeric characterics and excess whitespace removed (with `dht::clean_address()`)
+- **`normalized_address`**: `address_clean` normalized using libpostal
 
 ### Optional Argument
 
