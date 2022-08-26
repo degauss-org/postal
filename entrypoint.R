@@ -66,11 +66,11 @@ d <- d |>
 d_out <-
   dplyr::left_join(
     d_in,
-    dplyr::select(d, input_address, parsed_address),
+    dplyr::select(d, input_address, parsed_address, expanded_addresses, hashdresses),
     by = c("address" = "input_address")
-  )
+  ) |>
+  tidyr::unnest(cols = c(expanded_addresses, hashdresses)) |>
+  dplyr::rename(hashdress = hashdresses)
 
 dht::write_geomarker_file(d_out, filename = opt$filename)
 saveRDS(d, "example_postal_output.rds")
-
-#### /code/libpostal/src/near_dupe_test
