@@ -4,13 +4,14 @@ dht::greeting()
 
 doc <- "
       Usage:
-      entrypoint.R <filename>
+      entrypoint.R <filename> [<expand>]
       "
 
 opt <- docopt::docopt(doc)
 
 ## for interactive testing
-## opt <- docopt::docopt(doc, args = 'address.csv')
+## opt <- docopt::docopt(doc, args = "address.csv")
+## opt <- docopt::docopt(doc, args = c("address.csv", "expand"))
 
 d_in <- readr::read_csv(opt$filename, show_col_types = FALSE)
 cli::cli_alert_success("imported data from {opt$filename}")
@@ -27,50 +28,61 @@ d$cleaned_address <- dht::clean_address(d$input_address)
 cli::cli_alert_info("parsing addresses...")
 parser_output <- system2("/code/libpostal/src/address_parser", input = d$cleaned_address, stdout = TRUE)
 
-d$parsed_address_components <-
+parsed_address_components <-
   parser_output[-c(1:11)] |>
   paste(collapse = " ") |>
   strsplit("Result:", fixed = TRUE) |>
   purrr::transpose() |>
   purrr::modify(unlist) |>
-  purrr::modify(jsonlite::fromJSON)
+  purrr::modify(jsonlite::fromJSON) |>
+  purrr::modify(tibble::as_tibble) |>
+  dplyr::bind_rows() |>
+  dplyr::rename_with(~ paste("parsed", .x, sep = "."))
+# TODO make sure this doesn't remove rows with all NAs
 
-# x must be a parsed_address_components_list
-# components is character vector of components to paste together
-make_parsed_address <- function(x, components = c("house_number", "road", "city", "state", "postcode")) {
-  components |>
-    purrr::map(~ purrr::pluck(x, .x)) |>
-    purrr::compact() |>
-    paste(collapse = " ")
+d <- dplyr::bind_cols(d, parsed_address_components)
+
+collapse <- function(x) {
+  paste(na.omit(x), collapse = " ")
 }
 
 d <- d |>
   dplyr::rowwise(input_address) |>
-  dplyr::mutate(parsed_address = make_parsed_address(parsed_address_components)) |>
-  dplyr::mutate(hashing_address = make_parsed_address(
-    parsed_address_components,
-    components = c("house_number", "road", "postcode")
-  ))
+  dplyr::mutate(parsed_address = collapse(c(
+    parsed.house_number,
+    parsed.road,
+    parsed.city,
+    parsed.state,
+    parsed.postcode
+  ))) |>
+  dplyr::ungroup()
 
-#### make hashdresses
-cli::cli_alert_info("expanding addresses...")
-d$expanded_addresses <-
-  system2("/code/libpostal/src/libpostal", "--json", input = d$hashing_address, stdout = TRUE) |>
-  purrr::map(jsonlite::fromJSON) |>
-  purrr::map("expansions")
+## TODO          expanding addresses
+if (!is.null(opt$expand)) {
+  cli::cli_alert_info("the {.field expand} argument is set to {.val {expand}}; expanding addresses...")
+  cli::cli_alert_warning("more than one address row will likely be returned for each input address row")
 
-cli::cli_alert_info("hashing addresses...")
-d <- d |>
-  dplyr::mutate(hashdresses = list(purrr::map_chr(expanded_addresses, digest::digest, algo = "spookyhash")))
+  d$expanded_addresses <-
+    system2("/code/libpostal/src/libpostal", "--json", input = d$hashing_address, stdout = TRUE) |>
+    purrr::map(jsonlite::fromJSON) |>
+    purrr::map("expansions")
 
-d_out <-
-  dplyr::left_join(
-    d_in,
-    dplyr::select(d, input_address, parsed_address, expanded_addresses, hashdresses),
-    by = c("address" = "input_address")
-  ) |>
-  tidyr::unnest(cols = c(expanded_addresses, hashdresses)) |>
-  dplyr::rename(hashdress = hashdresses)
+  d_out <-
+    dplyr::left_join(
+      d_in,
+      dplyr::select(d, input_address, parsed_address, expanded_addresses, hashdresses),
+      by = c("address" = "input_address")
+    ) |>
+    tidyr::unnest(cols = c(expanded_addresses, hashdresses)) |>
+    dplyr::rename(hashdress = hashdresses)
+}
 
-dht::write_geomarker_file(d_out, filename = opt$filename)
-saveRDS(d, "example_postal_output.rds")
+d_out <- dplyr::left_join(d_in, d, by = c("address" = "input_address"))
+
+
+dht::write_geomarker_file(
+  d_out,
+  filename = opt$filename,
+  argument = ifelse(is.null(opt$expand), NULL, "expand")
+)
+
