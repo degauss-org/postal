@@ -57,32 +57,20 @@ d <- d |>
   ))) |>
   dplyr::ungroup()
 
-## TODO          expanding addresses
+## expanding addresses
 if (!is.null(opt$expand)) {
-  cli::cli_alert_info("the {.field expand} argument is set to {.val {expand}}; expanding addresses...")
+  cli::cli_alert_info("the {.field expand} argument is set to {.val {opt$expand}}; expanding addresses...")
   cli::cli_alert_warning("more than one address row will likely be returned for each input address row")
 
   d$expanded_addresses <-
-    system2("/code/libpostal/src/libpostal", "--json", input = d$hashing_address, stdout = TRUE) |>
+    system2("/code/libpostal/src/libpostal", "--json", input = d$parsed_address, stdout = TRUE) |>
     purrr::map(jsonlite::fromJSON) |>
     purrr::map("expansions")
 
-  d_out <-
-    dplyr::left_join(
-      d_in,
-      dplyr::select(d, input_address, parsed_address, expanded_addresses, hashdresses),
-      by = c("address" = "input_address")
-    ) |>
-    tidyr::unnest(cols = c(expanded_addresses, hashdresses)) |>
-    dplyr::rename(hashdress = hashdresses)
+  d <- d |> tidyr::unnest(cols = c(expanded_addresses))
 }
 
 d_out <- dplyr::left_join(d_in, d, by = c("address" = "input_address"))
 
 
-dht::write_geomarker_file(
-  d_out,
-  filename = opt$filename,
-  argument = ifelse(is.null(opt$expand), NULL, "expand")
-)
-
+dht::write_geomarker_file(d_out, filename = opt$filename, argument = opt$expand)
