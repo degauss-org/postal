@@ -14,16 +14,24 @@ docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.0 my_address_file.cs
 will produce `my_address_file_postal_0.1.0.csv` with added columns:
 
 - **`cleaned_address`**: `address` with non-alphanumeric characterics and excess whitespace removed (with `dht::clean_address()`)
-- **`parsed.{address component}`**: multiple columns, one for each [parsed address component](https://github.com/openvenues/libpostal#parser-labels) (e.g., `parsed.road`, `parsed.state`, `parsed.house_number`)
-- `**parsed_address**`: a "parsed" address created by pasting together available `parsed.house_number`, `parsed.road`, `parsed.city`, `parsed.state`, `parsed.postcode` address components
-- **`normalized_address`**: `address_clean` normalized using libpostal
+- **`parsed.{address_component}`**: multiple columns, one for each [parsed address component](https://github.com/openvenues/libpostal#parser-labels) (e.g., `parsed.road`, `parsed.state`, `parsed.house_number`)
+- **`parsed_address`**: a "parsed" address created by pasting together available `parsed.house_number`, `parsed.road`, `parsed.city`, `parsed.state`, `parsed.postcode` address components
 
 ### Optional Argument
 
-`libpostal`
+After parsing, the parsed addresses can be expanded into [several possible normalized addresses](https://github.com/openvenues/libpostal#examples-of-normalization) using `libpostal`.  This can be useful for matching of these addresses with other messy, real world addresses.
 
-- If this DeGAUSS container takes an optional argument, describe its usage and effects here.
-- Be sure to also update the example output file name with the argument value.
+If any value is provided as an argument (e.g., "expand"), then the [DeGAUSS command](https://degauss.org/using_degauss.html#DeGAUSS_Commands):
+
+```sh
+docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.0 my_address_file.csv expand
+```
+
+will produce `my_address_file_postal_0.1.0_expand.csv` with the above columns *plus*:
+
+- **`expanded_addresses`**: the expanded addresses for `parsed_address`
+
+Because each `parsed_address` will likely result in more than one `expanded_addresses`, each input row is duplicated to accomodate several `expanded_addresses`. This means that when expanding addresses, the input CSV file is "expanded" too by duplicating the input rows.
 
 ## Geomarker Methods
 
@@ -31,15 +39,7 @@ Input addresses are parsed/normalized using [`libpostal`](https://github.com/ope
 
 1. removing non-alphanumeric characters (except `-`) and excess whitespace (with `dht::clean_address()`)
 2. [parsing addresses into components](https://github.com/openvenues/libpostal#examples-of-parsing) using `libpostal/scr/address_parser` (a machine learning model trained on OpenStreetMap and OpenAddresses)
-3. 
-
-- Address data must be in one column called `address`.
-- Other columns may be present, but it is recommended to only include `address` and an optional identifier column (e.g., `id`). Fewer columns will increase geocoding speed.
-
-## Geomarker Data
-
-- List how geomarker was created, ideally including any scripts within the repo used to do so or linking to an external repository
-- If applicable, list where geomarker data is stored in S3 using a hyperlink like: [`s3://path/to/postal.rds`](https://geomarker.s3.us-east-2.amazonaws.com/path/to/postal.rds)
+3. (with an optional argument) expanding the parsed address into [several possible normalized addresses](https://github.com/openvenues/libpostal#examples-of-normalization)
 
 ## DeGAUSS Details
 
