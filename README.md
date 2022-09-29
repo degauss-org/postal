@@ -8,10 +8,10 @@
 If `my_address_file.csv` is a file in the current working directory with an address column named `address`, then the [DeGAUSS command](https://degauss.org/using_degauss.html#DeGAUSS_Commands):
 
 ```sh
-docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.0 my_address_file.csv
+docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.1 my_address_file.csv
 ```
 
-will produce `my_address_file_postal_0.1.0.csv` with added columns:
+will produce `my_address_file_postal_0.1.1.csv` with added columns:
 
 - **`cleaned_address`**: `address` with non-alphanumeric characterics and excess whitespace removed (with `dht::clean_address()`)
 - **`parsed.{address_component}`**: multiple columns, one for each [parsed address component](https://github.com/openvenues/libpostal#parser-labels) (e.g., `parsed.road`, `parsed.state`, `parsed.house_number`)
@@ -24,10 +24,10 @@ After parsing, the parsed addresses can be expanded into [several possible norma
 If any value is provided as an argument (e.g., "expand"), then the [DeGAUSS command](https://degauss.org/using_degauss.html#DeGAUSS_Commands):
 
 ```sh
-docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.0 my_address_file.csv expand
+docker run --rm -v $PWD:/tmp ghcr.io/degauss-org/postal:0.1.1 my_address_file.csv expand
 ```
 
-will produce `my_address_file_postal_0.1.0_expand.csv` with the above columns *plus*:
+will produce `my_address_file_postal_0.1.1_expand.csv` with the above columns *plus*:
 
 - **`expanded_addresses`**: the expanded addresses for `parsed_address`
 
