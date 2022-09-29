@@ -12,6 +12,7 @@ opt <- docopt::docopt(doc)
 ## for interactive testing
 ## opt <- docopt::docopt(doc, args = "address.csv")
 ## opt <- docopt::docopt(doc, args = c("address.csv", "expand"))
+## opt <- docopt::docopt(doc, args = c("address_stub.csv", "expand"))
 
 d_in <- readr::read_csv(opt$filename, show_col_types = FALSE)
 cli::cli_alert_success("imported data from {opt$filename}")
