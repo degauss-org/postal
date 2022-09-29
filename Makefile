@@ -1,7 +1,7 @@
 .PHONY: build test shell clean
 
 build:
-	docker build -t postal .
+	docker build --platform="amd64" -t postal .
 
 test:
 	docker run --rm -v "${PWD}/test":/tmp postal address.csv
