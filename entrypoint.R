@@ -47,7 +47,7 @@ d <- tidyr::unite(d, col = "parsed_address", starts_with("parsed."), sep = " ", 
 
 ## expanding addresses
 if (!is.null(opt$expand)) {
-  cli::cli_alert_info("the {.field expand} argument is set to {.val {opt$expand}}; expanding addresses...")
+  cli::cli_alert_info("the {.field expand} argument is set to {.val {opt$expand}}; expanding the parsed addresses...")
   cli::cli_alert_warning("more than one address row will likely be returned for each input address row")
 
   d$expanded_addresses <-
