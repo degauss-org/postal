@@ -7,18 +7,16 @@ id,address,cleaned_address,parsed_address,parsed.house_number,parsed.road,parsed
 55000235280,"2854 ROSEANN LANE GREEN TOWNSHIP, OH 45239",2854 ROSEANN LANE GREEN TOWNSHIP OH 45239,2854 roseann lane green township oh 45239,2854,roseann lane,green township,oh,45239,NA,NA,NA,2854 roseann lane green township oh 45239
 9800060045,"407 SOUTHVIEW AV CINCINNATI, OH 45219",407 SOUTHVIEW AV CINCINNATI OH 45219,407 southview av cincinnati oh 45219,407,southview av,cincinnati,oh,45219,NA,NA,NA,407 southview avenue cincinnati ohio 45219
 9800060045,"407 SOUTHVIEW AV CINCINNATI, OH 45219",407 SOUTHVIEW AV CINCINNATI OH 45219,407 southview av cincinnati oh 45219,407,southview av,cincinnati,oh,45219,NA,NA,NA,407 southview avenue cincinnati oh 45219
-9800060045,"407 SOUTHVIEW AV Apartment #2 CINCINNATI, OH 45219",407 SOUTHVIEW AV Apartment 2 CINCINNATI OH 45219,407 southview av cincinnati oh 45219 apartment 2,407,southview av,cincinnati,oh,45219,apartment 2,NA,NA,407 southview avenue cincinnati ohio 45219 apartment 2
-9800060045,"407 SOUTHVIEW AV Apartment #2 CINCINNATI, OH 45219",407 SOUTHVIEW AV Apartment 2 CINCINNATI OH 45219,407 southview av cincinnati oh 45219 apartment 2,407,southview av,cincinnati,oh,45219,apartment 2,NA,NA,407 southview avenue cincinnati oh 45219 apartment 2
+9800060045,"407 SOUTHVIEW AV Apartment #2 CINCINNATI, OH 45219",407 SOUTHVIEW AV Apartment 2 CINCINNATI OH 45219,407 southview av cincinnati oh 45219,407,southview av,cincinnati,oh,45219,apartment 2,NA,NA,407 southview avenue cincinnati ohio 45219
+9800060045,"407 SOUTHVIEW AV Apartment #2 CINCINNATI, OH 45219",407 SOUTHVIEW AV Apartment 2 CINCINNATI OH 45219,407 southview av cincinnati oh 45219,407,southview av,cincinnati,oh,45219,apartment 2,NA,NA,407 southview avenue cincinnati oh 45219
 59100090241,"909 GRETNA LN FOREST PARK, OH 45240",909 GRETNA LN FOREST PARK OH 45240,909 gretna ln forest park oh 45240,909,gretna ln,forest park,oh,45240,NA,NA,NA,909 gretna lane forest park ohio 45240
 59100090241,"909 GRETNA LN FOREST PARK, OH 45240",909 GRETNA LN FOREST PARK OH 45240,909 gretna ln forest park oh 45240,909,gretna ln,forest park,oh,45240,NA,NA,NA,909 gretna lane forest park oh 45240
 59100090241,"909 GRETNA LN FOREST PARK, OH 45240",909 GRETNA LN FOREST PARK OH 45240,909 gretna ln forest park oh 45240,909,gretna ln,forest park,oh,45240,NA,NA,NA,909 gretna line forest park ohio 45240
 59100090241,"909 GRETNA LN FOREST PARK, OH 45240",909 GRETNA LN FOREST PARK OH 45240,909 gretna ln forest park oh 45240,909,gretna ln,forest park,oh,45240,NA,NA,NA,909 gretna line forest park oh 45240
-55071310120,"P.O. BOX 12345 GREEN TOWNSHIP, OH 45238",P O BOX 12345 GREEN TOWNSHIP OH 45238,green township oh 45238 p o box 12345,NA,NA,green township,oh,45238,NA,p o box 12345,NA,green township ohio 45238 post office box 12345
-55071310120,"P.O. BOX 12345 GREEN TOWNSHIP, OH 45238",P O BOX 12345 GREEN TOWNSHIP OH 45238,green township oh 45238 p o box 12345,NA,NA,green township,oh,45238,NA,p o box 12345,NA,green township oh 45238 post office box 12345
-4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208 po 12345,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati oh 45208 prato 12345
-4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208 po 12345,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati oh 45208 paseo 12345
-4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208 po 12345,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati ohio 45208 post office 12345
-4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208 po 12345,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati oh 45208 post office 12345
+55071310120,"P.O. BOX 12345 GREEN TOWNSHIP, OH 45238",P O BOX 12345 GREEN TOWNSHIP OH 45238,green township oh 45238,NA,NA,green township,oh,45238,NA,p o box 12345,NA,green township ohio 45238
+55071310120,"P.O. BOX 12345 GREEN TOWNSHIP, OH 45238",P O BOX 12345 GREEN TOWNSHIP OH 45238,green township oh 45238,NA,NA,green township,oh,45238,NA,p o box 12345,NA,green township oh 45238
+4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati ohio 45208
+4100010061,"PO 12345 CINCINNATI, OH 45208",PO 12345 CINCINNATI OH 45208,cincinnati oh 45208,NA,NA,cincinnati,oh,45208,NA,NA,po 12345,cincinnati oh 45208
 9000010083,"3333 BURNET AVE CINCINNATI, OH 45229",3333 BURNET AVE CINCINNATI OH 45229,3333 burnet ave cincinnati oh 45229,3333,burnet ave,cincinnati,oh,45229,NA,NA,NA,3333 burnet avenue cincinnati ohio 45229
 9000010083,"3333 BURNET AVE CINCINNATI, OH 45229",3333 BURNET AVE CINCINNATI OH 45229,3333 burnet ave cincinnati oh 45229,3333,burnet ave,cincinnati,oh,45229,NA,NA,NA,3333 burnet avenue cincinnati oh 45229
 21600460082,"222 E CENTRAL PKWY CINCINNATI, OH 45202",222 E CENTRAL PKWY CINCINNATI OH 45202,222 e central pkwy cincinnati oh 45202,222,e central pkwy,cincinnati,oh,45202,NA,NA,NA,222 east central parkway cincinnati ohio 45202
@@ -27,8 +25,8 @@ id,address,cleaned_address,parsed_address,parsed.house_number,parsed.road,parsed
 21600460082,"222 E CENTRAL PKWY CINCINNATI, OH 45202",222 E CENTRAL PKWY CINCINNATI OH 45202,222 e central pkwy cincinnati oh 45202,222,e central pkwy,cincinnati,oh,45202,NA,NA,NA,222 e central parkway cincinnati oh 45202
 21600460082,"222 EAST CENTRAL PKWY CINCINNATI, OH 45202",222 EAST CENTRAL PKWY CINCINNATI OH 45202,222 east central pkwy cincinnati oh 45202,222,east central pkwy,cincinnati,oh,45202,NA,NA,NA,222 east central parkway cincinnati ohio 45202
 21600460082,"222 EAST CENTRAL PKWY CINCINNATI, OH 45202",222 EAST CENTRAL PKWY CINCINNATI OH 45202,222 east central pkwy cincinnati oh 45202,222,east central pkwy,cincinnati,oh,45202,NA,NA,NA,222 east central parkway cincinnati oh 45202
-67100240229,foreign,foreign,foreign,NA,NA,NA,NA,NA,NA,NA,foreign,foreign
-2800040021,verify,verify,verify,NA,NA,NA,NA,NA,NA,NA,verify,verify
+67100240229,foreign,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2800040021,verify,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 59004140168,unknown,unknown,unknown,NA,NA,unknown,NA,NA,NA,NA,NA,unknown
 50002200628,NA,NA,na,NA,NA,NA,na,NA,NA,NA,NA,na
 50002200628,NA,NA,na,NA,NA,NA,na,NA,NA,NA,NA,not applicable

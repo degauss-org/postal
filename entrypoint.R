@@ -39,11 +39,13 @@ parsed_address_components <-
   purrr::modify(tibble::as_tibble) |>
   dplyr::bind_rows() |>
   dplyr::rename_with(~ paste("parsed", .x, sep = "."))
-# TODO make sure this doesn't remove rows with all NAs
 
 d <- dplyr::bind_cols(d, parsed_address_components)
 
-d <- tidyr::unite(d, col = "parsed_address", starts_with("parsed."), sep = " ", na.rm = TRUE, remove = FALSE)
+d <- tidyr::unite(d,
+                  col = "parsed_address",
+                  tidyselect::any_of(paste0("parsed.", c("house_number", "road", "city", "state", "postcode"))),
+                  sep = " ", na.rm = TRUE, remove = FALSE)
 
 ## expanding addresses
 if (!is.null(opt$expand)) {
