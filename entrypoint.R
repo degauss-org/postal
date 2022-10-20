@@ -36,9 +36,11 @@ parsed_address_components <-
   purrr::transpose() |>
   purrr::modify(unlist) |>
   purrr::modify(jsonlite::fromJSON) |>
-  purrr::modify(tibble::as_tibble) |>
+  purrr::modify(tibble::as_tibble, .name_repair = "unique") |>
   dplyr::bind_rows() |>
-  dplyr::rename_with(~ paste("parsed", .x, sep = "."))
+  dplyr::select(-contains("...")) |>
+  dplyr::rename_with(~ paste("parsed", .x, sep = ".")) |>
+  suppressMessages()
 
 d <- dplyr::bind_cols(d, parsed_address_components)
 
