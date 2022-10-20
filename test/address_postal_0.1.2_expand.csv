@@ -42,6 +42,7 @@ id,address,cleaned_address,parsed_address,parsed.house_number,parsed.road,parsed
 97124042024,NA,NA,na,NA,NA,NA,na,NA,NA,NA,NA,national association
 5100020177,"4506 CAMBERWELL RD CINCINNATI, OH 45209",4506 CAMBERWELL RD CINCINNATI OH 45209,4506 camberwell rd cincinnati oh 45209,4506,camberwell rd,cincinnati,oh,45209,NA,NA,NA,4506 camberwell road cincinnati ohio 45209
 5100020177,"4506 CAMBERWELL RD CINCINNATI, OH 45209",4506 CAMBERWELL RD CINCINNATI OH 45209,4506 camberwell rd cincinnati oh 45209,4506,camberwell rd,cincinnati,oh,45209,NA,NA,NA,4506 camberwell road cincinnati oh 45209
+5100020177,"4506 CAMBERWELL RD CINCINNATI, OH CINCINNATI, OH 45209",4506 CAMBERWELL RD CINCINNATI OH CINCINNATI OH 45209,4506 camberwell rd 45209,4506,camberwell rd,NA,NA,45209,NA,NA,NA,4506 camberwell road 45209
 55000100212,"5585 FAIRWOOD RD GREEN TOWNSHIP, OH 45239",5585 FAIRWOOD RD GREEN TOWNSHIP OH 45239,5585 fairwood rd green township oh 45239,5585,fairwood rd,green township,oh,45239,NA,NA,NA,5585 fairwood road green township ohio 45239
 55000100212,"5585 FAIRWOOD RD GREEN TOWNSHIP, OH 45239",5585 FAIRWOOD RD GREEN TOWNSHIP OH 45239,5585 fairwood rd green township oh 45239,5585,fairwood rd,green township,oh,45239,NA,NA,NA,5585 fairwood road green township oh 45239
 51000810328,"6628 JULY CT COLERAIN TOWNSHIP, OH 45239",6628 JULY CT COLERAIN TOWNSHIP OH 45239,6628 july ct colerain township oh 45239,6628,july ct,colerain township,oh,45239,NA,NA,NA,6628 july ct colerain township ohio 45239
