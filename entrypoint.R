@@ -2,6 +2,8 @@
 
 dht::greeting()
 
+dht::check_ram(4)
+
 doc <- "
       Usage:
       entrypoint.R <filename> [<expand>]
@@ -44,9 +46,13 @@ parsed_address_components <-
 
 d <- dplyr::bind_cols(d, parsed_address_components)
 
+if (!is.null(d$parsed.postcode)) {
+  d$parsed.postcode_five <- substr(d$parsed.postcode, 1, 5)
+}
+
 d <- tidyr::unite(d,
                   col = "parsed_address",
-                  tidyselect::any_of(paste0("parsed.", c("house_number", "road", "city", "state", "postcode"))),
+                  tidyselect::any_of(paste0("parsed.", c("house_number", "road", "city", "state", "postcode_five"))),
                   sep = " ", na.rm = TRUE, remove = FALSE)
 
 ## expanding addresses
